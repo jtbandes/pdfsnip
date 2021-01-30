@@ -173,6 +173,11 @@ struct PDFObject {
     var result: T?
     return CGPDFObjectGetValue(object, objectType, &result) ? result : nil
   }
+  
+  private func getAs<T: Numeric>(_ objectType: CGPDFObjectType, _ type: T.Type) -> T? {
+    var result = T.zero
+    return CGPDFObjectGetValue(object, objectType, &result) ? result : nil
+  }
 }
 
 extension PDFObject: CustomStringConvertible {

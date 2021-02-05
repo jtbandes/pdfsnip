@@ -8,6 +8,7 @@ let package = Package(
   platforms: [.macOS(.v10_11)],
   products: [
     .executable(name: "pdfsnip", targets: ["pdfsnip"]),
+    .library(name: "PDFWrappers", targets: ["PDFWrappers"]),
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.3.1"),
@@ -16,7 +17,9 @@ let package = Package(
     .target(
       name: "pdfsnip",
       dependencies: [
-        .product(name: "ArgumentParser", package: "swift-argument-parser")
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .target(name: "PDFWrappers"),
       ]),
+    .target(name: "PDFWrappers"),
   ]
 )
